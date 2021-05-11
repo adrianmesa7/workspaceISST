@@ -21,10 +21,13 @@
 <tr>
 <td>${resumeni.title}</td>
 <td>${resumeni.name}</td>
-<td><a href="${resumeni.urlDocument}">${resumeni.urlDocument}</a></td>
+<td><a href="${resumeni.urlResumen}">${resumeni.urlResumen}</a></td>
 </tr>
 </c:forEach>
+
 </table>
+
+
 
 <%@ include file="FormLogout.jsp"%>
 

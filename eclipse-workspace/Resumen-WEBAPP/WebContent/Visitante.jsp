@@ -18,11 +18,11 @@
 </tr>
 
 
-<c:forEach items="${fn:length(resumenes) < 3}" var="resumeni">
+<c:forEach items="${resumenes}" var="resumeni" begin="1" end="5">
 <tr>
 <td>${resumeni.title}</td>
 <td>${resumeni.name}</td>
-<td><a href="${resumeni.urlDocument}">${resumeni.urlDocument}</a></td>
+<td><a href="${resumeni.urlResumen}">${resumeni.urlResumen}</a></td>
 </tr>
 </c:forEach>
 </table>

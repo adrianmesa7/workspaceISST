@@ -22,7 +22,7 @@
 <tr>
 <td>${resumeni.title}</td>
 <td>${resumeni.name}</td>
-<td><a href="${resumeni.urlDocument}">${resumeni.urlDocument}</a></td>
+<td><a href="${resumeni.urlResumen}">Resumen</a></td>
 </tr>
 </c:forEach>
 
@@ -30,10 +30,10 @@
 
 
 <h2>Introduce resumen</h2>
-<form action="FormCreaResumenServlet">
-        <input type="hidden" name="email" value="${resumen.email}"/>
+<form action="FormCreaResumenServlet" method="post">
+        <input type="text" id="name" name="name" placeholder="Nombre y apellidos"/>
         <input type="text" id="title" name="title" placeholder="Titulo resumen"/>
-        <input type="url" name="urlDocument" placeholder="Enlace a resumen"/>
+        <input type="url" id="urlResumen" name="urlResumen" placeholder="Enlace a resumen"/>
         <button type="submit">Subir resumen</button>
 </form>
 
