@@ -1,6 +1,7 @@
 package es.upm.dit.isst.resumen.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -36,13 +38,14 @@ public class FormCreaResumenServlet extends HttpServlet {
                 resumen.setName(req.getParameter("name"));
                 resumen.setUrlResumen(req.getParameter("urlResumen"));
                 Client client = ClientBuilder.newClient(new ClientConfig());
-                Response r = client.target(URLHelper.getURL()).request()
+                client.target(URLHelper.getURL()).request()
                         .post(Entity.entity(resumen, MediaType.APPLICATION_JSON)
                        , Response.class);
-                if (r.getStatus() == 200) {
-                        req.getSession().setAttribute("resumen", resumen);
-                        getServletContext().getRequestDispatcher("/Resumen.jsp").forward(req, resp);
-	                    return;
+                if (resumen != null) {
+                	List<RESUMEN> resumenes = client.target(URLHelper.getURL())
+              	          .request().accept(MediaType.APPLICATION_JSON)
+              	          .get(new GenericType<List<RESUMEN>>() {});
+              	        req.setAttribute("resumenes", resumenes);
                 }
 	             
 	        getServletContext().getRequestDispatcher("/Resumen.jsp").forward(req, resp);
