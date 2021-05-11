@@ -25,14 +25,16 @@ public class FormCreaResumenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	        String advisorEmail = req.getParameter("email");
-	        if (advisorEmail.indexOf("@escritor.es") > 0) {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 RESUMEN resumen = new RESUMEN();
                 resumen.setEmail(req.getParameter("email"));
+                resumen.setPassword(req.getParameter("password"));
                 resumen.setPuntuacion(0.0);
+                resumen.setStatus(1);
+                resumen.setUrlAudio("urldelaudio");
                 resumen.setTitle(req.getParameter("title"));
                 resumen.setName(req.getParameter("name"));
+                resumen.setUrlResumen(req.getParameter("urlResumen"));
                 Client client = ClientBuilder.newClient(new ClientConfig());
                 Response r = client.target(URLHelper.getURL()).request()
                         .post(Entity.entity(resumen, MediaType.APPLICATION_JSON)
@@ -42,8 +44,8 @@ public class FormCreaResumenServlet extends HttpServlet {
                         getServletContext().getRequestDispatcher("/Resumen.jsp").forward(req, resp);
 	                    return;
                 }
-	        }        
-	        getServletContext().getRequestDispatcher("/index.html").forward(req, resp);
+	             
+	        getServletContext().getRequestDispatcher("/Resumen.jsp").forward(req, resp);
 	}
 
 }

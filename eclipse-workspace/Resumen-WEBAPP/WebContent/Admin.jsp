@@ -6,17 +6,38 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Subir resumen</title>
+<title>Bienvenido admin</title>
 </head>
 <body>
 
-<form action="FormSubeResumenServlet" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="email" value="${resumen.email}" />
-        <input type="file" name="file" />
-        <input type="submit">Subir resumen</input>
+<h2>Resumenes disponibles</h2>
+<table border="1">
+<tr>
+<th>Titulo</th>
+<th>Escritor</th>
+<th>Resumen</th>
+</tr>
+
+<c:forEach items="${resumenes}" var="resumeni">
+<tr>
+<td>${resumeni.title}</td>
+<td>${resumeni.name}</td>
+<td><a href="${resumeni.urlDocument}">${resumeni.urlDocument}</a></td>
+</tr>
+</c:forEach>
+
+</table>
+
+
+<h2>Introduce resumen</h2>
+<form action="FormCreaResumenServlet">
+        <input type="hidden" name="email" value="${resumen.email}"/>
+        <input type="text" id="title" name="title" placeholder="Titulo resumen"/>
+        <input type="url" name="urlDocument" placeholder="Enlace a resumen"/>
+        <button type="submit">Subir resumen</button>
 </form>
 
-
+<%@ include file="FormLogout.jsp"%>
 
 </body>
 </html>

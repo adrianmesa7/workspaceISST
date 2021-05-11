@@ -3,7 +3,6 @@ package es.upm.dit.isst.resumen.model;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 public class RESUMEN implements Serializable{
@@ -11,26 +10,42 @@ public class RESUMEN implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String email; 
-	private String password; //contraseña escritor
-	private String name; //nombre escritor
 	private String title; //título resumen
+	private String email; 
+	private String password; //contraseña
+	private String name; //nombre escritor
 	private double puntuacion;
-	@Lob
-	private String urlDocument;
+	private String urlResumen;
+	private String urlAudio;
+	private int status;
 	
 	
 
 	public RESUMEN() {}
 	
-	public String getUrlDocument() {
-		return urlDocument;
+	
+	
+	public String getUrlAudio() {
+		return urlAudio;
 	}
 
 
-	public void setUrlDocument(String urlDocument) {
-		this.urlDocument = urlDocument;
+	public void setUrlAudio(String urlAudio) {
+		this.urlAudio = urlAudio;
 	}
+
+
+
+	public String getUrlResumen() {
+		return urlResumen;
+	}
+
+
+
+	public void setUrlResumen(String urlResumen) {
+		this.urlResumen = urlResumen;
+	}
+
 
 
 	public String getEmail() {
@@ -82,14 +97,23 @@ public class RESUMEN implements Serializable{
 		this.puntuacion = puntuacion;
 	}
 
-
 	
+	public int getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 
@@ -103,27 +127,23 @@ public class RESUMEN implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		RESUMEN other = (RESUMEN) obj;
-		if (email == null) {
-			if (other.email != null)
+		if (title == null) {
+			if (other.title != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!title.equals(other.title))
 			return false;
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "RESUMEN [email=" + email + ", password=" + password + ", name=" + name + ", title=" + title
-				+ ", puntuacion=" + puntuacion + ", urlDocument=" + urlDocument + "]";
+		return "RESUMEN [title=" + title + ", email=" + email + ", password=" + password + ", name=" + name
+				+ ", puntuacion=" + puntuacion + ", urlResumen=" + urlResumen + ", urlAudio=" + urlAudio + ", status="
+				+ status + "]";
 	}
 
 
-	
 
-
-
-	
-	
-	
-	
 }

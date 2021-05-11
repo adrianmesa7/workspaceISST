@@ -8,11 +8,16 @@
 <title>Introduce resumen</title>
 </head>
 <body>
-<form action="FormCreaResumenServlet" method="post" enctype="multipart/form-data">
-        <input type="text" id="name" name="name" placeholder="Nombre completo">
-        <input type="text" id="title" name="title" placeholder="Titulo">
-        <input type="file" name="file" />
-        <button type="submit">Subir</button>
+
+<form action="FormCreaResumenServlet" method="post">
+        <input type="text" id="name" name="name" placeholder="Nombre y apellidos"/>
+        <input type="text" id="title" name="title" placeholder="Titulo resumen"/>
+        <input type="url" id="urlResumen" name="urlResumen" placeholder="Enlace a resumen"/>
+        <button type="submit">Subir resumen</button>
 </form>
+
+
+<%@ include file="FormLogout.jsp"%>
+
 </body>
 </html>

@@ -6,9 +6,28 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Resumenes disponibles</title>
 </head>
 <body>
+
+<table border="1">
+<tr>
+<th>Titulo</th>
+<th>Escritor</th>
+<th>Resumen</th>
+</tr>
+
+
+<c:forEach items="${fn:length(resumenes) < 3}" var="resumeni">
+<tr>
+<td>${resumeni.title}</td>
+<td>${resumeni.name}</td>
+<td><a href="${resumeni.urlDocument}">${resumeni.urlDocument}</a></td>
+</tr>
+</c:forEach>
+</table>
+
+<%@ include file="FormLogout.jsp"%>
 
 </body>
 </html>

@@ -47,9 +47,9 @@ public class FormLoginServlet extends HttpServlet {
        
         
         // autenticacion escritor
-        if ( email.indexOf("@escritor.es") > -1) {
+        if ( email.contains("@escritor.es")) {
              req.getSession().setAttribute("escritor", email);
-             List<RESUMEN> resumenes  = client.target(URLHelper.getURL() + "/escritor/" + email)
+             List<RESUMEN> resumenes  = client.target(URLHelper.getURL())
                          .request().accept(MediaType.APPLICATION_JSON)
                          .get(new GenericType<List<RESUMEN>>() {});
              req.setAttribute("resumenes", resumenes);
@@ -59,9 +59,9 @@ public class FormLoginServlet extends HttpServlet {
         
         
         // autenticacion visitante
-        if ( email.indexOf("@visitante.es") > -1) {
+        if (email.contains("@visitante.es")) {
             req.getSession().setAttribute("visitante", email);
-            List<RESUMEN> resumenes  = client.target(URLHelper.getURL() + "/visitante/" + email)
+            List<RESUMEN> resumenes  = client.target(URLHelper.getURL())
                         .request().accept(MediaType.APPLICATION_JSON)
                         .get(new GenericType<List<RESUMEN>>() {});
             req.setAttribute("resumenes", resumenes);
@@ -71,9 +71,9 @@ public class FormLoginServlet extends HttpServlet {
         
         
         // autenticacion lector
-        if ( email.indexOf("@lector.es") > -1) {
+        if ( email.contains("@lector.es")) {
             req.getSession().setAttribute("lector", email);
-            List<RESUMEN> resumenes  = client.target(URLHelper.getURL() + "/lector/" + email)
+            List<RESUMEN> resumenes  = client.target(URLHelper.getURL())
                         .request().accept(MediaType.APPLICATION_JSON)
                         .get(new GenericType<List<RESUMEN>>() {});
             req.setAttribute("resumenes", resumenes);
